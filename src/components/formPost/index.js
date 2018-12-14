@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { POST_API } from '../../globals.js';
+import { POST_API } from '@/globals.js';
 
 class FormPost extends React.Component {
   constructor() {
