@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import FormPost from './components/formPost'
-import PostList from './components/postList'
+import FormPost from './components/formPost';
+import PostList from './components/postList';
 
 class App extends Component {
   render() {

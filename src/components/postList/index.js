@@ -1,20 +1,20 @@
-import React from 'react'
-import axios from 'axios'
-import './index.css'
-import { POST_API } from '../../globals.js'
+import React from 'react';
+import axios from 'axios';
+import './index.css';
+import { POST_API } from '../../globals.js';
 
 class PostList extends React.Component {
   
   constructor() {
-    super()
+    super();
     this.state = {
       posts: []
-    }
+    };
   }
   
   componentWillMount() {
     axios.get(POST_API)
-    .then(res => this.setState({posts: res.data}))
+    .then(res => this.setState({posts: res.data}));
   }
   
   render() {
@@ -23,15 +23,15 @@ class PostList extends React.Component {
         <h4>{item.title}</h4>
         <p>{item.body}</p>
       </div>
-    ))
+    ));
     
     return (
       <div>
         <h1>FormPost</h1>
         { postItems }
       </div>
-    )
+    );
   }
 }
 
-export default PostList
+export default PostList;

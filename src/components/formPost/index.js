@@ -1,27 +1,27 @@
-import React from 'react'
+import React from 'react';
 import axios from 'axios';
 
-import { POST_API } from '../../globals.js'
+import { POST_API } from '../../globals.js';
 
 class FormPost extends React.Component {
   constructor() {
-    super()
+    super();
     this.state = {
       title: '',
       body: '',
       isSendingBtnDisabled: false
-    }
+    };
   }
   
   handleInputChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
-    })
+    });
   }
   
   sendPost() {
     // Disable send Button during sending.
-    this.setState({isSendingBtnDisabled: true})
+    this.setState({isSendingBtnDisabled: true});
     axios.post(POST_API, {
       title: this.state.title,
       body: this.state.body
@@ -31,24 +31,24 @@ class FormPost extends React.Component {
         isSendingBtnDisabled: false,
         title: '',
         body: ''
-      })
+      });
       if (res.status !== 201) {
-        console.warn('Erreur d\'envoie')
+        console.warn('Erreur d\'envoie');
       } else {
-        console.log('Post bien envoyé !')
+        console.log('Post bien envoyé !');
       }
     })
     .catch(e => {
-      console.error(e)
-      this.setState({isSendingBtnDisabled: false})
-    })
+      console.error(e);
+      this.setState({isSendingBtnDisabled: false});
+    });
   }
   
   handleSubmit = (e) => {
-    e.preventDefault()
-    const { title, body } = this.state
+    e.preventDefault();
+    const { title, body } = this.state;
     if (title && body) {
-      this.sendPost()
+      this.sendPost();
     }
     
   }
@@ -71,8 +71,8 @@ class FormPost extends React.Component {
           <button type="submit" disabled={this.state.isSendingBtnDisabled}>Envoyer</button>
         </form>        
       </div>
-    )
+    );
   }
 }
 
-export default FormPost
+export default FormPost;
