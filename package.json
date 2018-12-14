@@ -63,7 +63,10 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "semi": ["error", "always"]
+    }
   },
   "browserslist": [
     ">0.2%",

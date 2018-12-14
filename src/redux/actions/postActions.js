@@ -1,4 +1,4 @@
-import { FETCH_POSTS, NEW_POST} from '@/actions/types';
+import { FETCH_POSTS, NEW_POST} from '@/redux/actions/types';
 import { POST_API } from '@/globals.js';
 import axios from 'axios';
 
