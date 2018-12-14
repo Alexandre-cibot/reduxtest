@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import '@/App.css';
 import { Provider } from 'react-redux';
 import store from '@/store';
+
+import { Divider } from 'semantic-ui-react';
 import FormPost from '@/components/formPost';
 import PostList from '@/components/postList';
+
+import 'semantic-ui-css/semantic.min.css';
 
 class App extends Component {
   render() {
@@ -16,7 +20,9 @@ class App extends Component {
           <section>
             <FormPost />
           </section>
-          <hr />
+          <section>
+            <Divider />
+          </section>
           <section>
             <PostList />
           </section>

@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import { Form, Button } from 'semantic-ui-react';
+
 import { POST_API } from '@/globals.js';
 
 class FormPost extends React.Component {
@@ -8,7 +10,8 @@ class FormPost extends React.Component {
     super();
     this.state = {
       title: '',
-      body: '',
+      message: '',
+      email: 'test@test.com',
       isSendingBtnDisabled: false
     };
   }
@@ -23,14 +26,16 @@ class FormPost extends React.Component {
     // Disable send Button during sending.
     this.setState({isSendingBtnDisabled: true});
     axios.post(POST_API, {
-      title: this.state.title,
-      body: this.state.body
+      title: this.state.title.trim(),
+      message: this.state.message.trim(),
+      email: this.state.email.trim()
     })
     .then(res => {
       this.setState({
         isSendingBtnDisabled: false,
         title: '',
-        body: ''
+        message: '',
+        email: ''
       });
       if (res.status !== 201) {
         console.warn('Erreur d\'envoie');
@@ -46,8 +51,11 @@ class FormPost extends React.Component {
   
   handleSubmit = (e) => {
     e.preventDefault();
-    const { title, body } = this.state;
-    if (title && body) {
+    const { title, message, email } = this.state;
+    const hasTitle = !!title.trim();
+    const hasMessage = !!message.trim();
+    const hasEmail = !!email.trim();
+    if (hasTitle && hasMessage && hasEmail) {
       this.sendPost();
     }
     
@@ -57,19 +65,14 @@ class FormPost extends React.Component {
     return (
       <div>
         <h1>FormPost</h1>
-        <form action="" onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="title">Titre</label> <br/>
-            <input type="text" name="title" value={this.state.title} onChange={this.handleInputChange}/>  
-          </div>
-          <br/>
-          <div>
-            <label htmlFor="body">Texte</label><br/>
-            <input type="text" name="body" value={this.state.body} onChange={this.handleInputChange}/>
-          </div>
-          <br/>
-          <button type="submit" disabled={this.state.isSendingBtnDisabled}>Envoyer</button>
-        </form>        
+        <Form action="" onSubmit={this.handleSubmit}>
+          <Form.Group widths='12'>
+            <Form.Input label="Title" type="text" name="title" value={this.state.title} onChange={this.handleInputChange} />  
+            <Form.Input label="Message" type="text" name="message" value={this.state.message} onChange={this.handleInputChange} />
+            <Form.Input label="Email" type="email" name="email" value={this.state.email} onChange={this.handleInputChange} />
+          </Form.Group>
+          <Button type="submit" disabled={this.state.isSendingBtnDisabled}>Envoyer</Button>
+        </Form> 
       </div>
     );
   }
