@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '@/App.css';
 import { Provider } from 'react-redux';
-import store from '@/store';
+import store from '@/redux/store';
 
 import { Divider } from 'semantic-ui-react';
 import FormPost from '@/components/formPost';
